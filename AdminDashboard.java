@@ -18,7 +18,6 @@ public class AdminDashboard extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        // Load background
         String imagePath = "C:/Users/ABCD/OneDrive/Desktop/app_project/com/attendancetracker/background4.jpg";
         try {
             bgImage = new ImageIcon(imagePath).getImage();
@@ -31,9 +30,8 @@ public class AdminDashboard extends JFrame {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                if (bgImage != null) {
-                    g.drawImage(bgImage, 0, 0, getWidth(), getHeight(), this);
-                } else {
+                if (bgImage != null) g.drawImage(bgImage, 0, 0, getWidth(), getHeight(), this);
+                else {
                     g.setColor(Color.DARK_GRAY);
                     g.fillRect(0, 0, getWidth(), getHeight());
                 }
@@ -41,24 +39,18 @@ public class AdminDashboard extends JFrame {
         };
         bgPanel.setBorder(BorderFactory.createEmptyBorder(12, 12, 12, 12));
 
-        // Header
         JLabel header = new JLabel("Administrator Panel");
         header.setFont(new Font("Segoe UI", Font.BOLD, 20));
         header.setForeground(Color.WHITE);
         header.setBorder(BorderFactory.createEmptyBorder(12, 12, 12, 12));
         bgPanel.add(header, BorderLayout.NORTH);
 
-        // Main center layout
         JPanel center = new JPanel(new GridLayout(1, 3, 12, 12));
         center.setOpaque(false);
 
-        // -----------------------------
-        // FACULTY PANEL
-        // -----------------------------
         JPanel facultyPanel = new JPanel(new BorderLayout());
         facultyPanel.setBackground(new Color(210, 255, 210));
         facultyPanel.setBorder(BorderFactory.createTitledBorder("Faculty (Assign One Subject)"));
-
         JList<User> facultyList = new JList<>(facultyListModel);
         facultyList.setFont(new Font("Segoe UI", Font.PLAIN, 13));
         JScrollPane facultyScroll = new JScrollPane(facultyList);
@@ -77,7 +69,6 @@ public class AdminDashboard extends JFrame {
                 return this;
             }
         });
-
         fcontrols.add(new JLabel("Username:")); fcontrols.add(fuser);
         fcontrols.add(new JLabel("Password:")); fcontrols.add(fpass);
         fcontrols.add(new JLabel("Name:")); fcontrols.add(fname);
@@ -85,30 +76,22 @@ public class AdminDashboard extends JFrame {
 
         JPanel fbtnPanel = new JPanel();
         fbtnPanel.setOpaque(false);
-        JButton addFaculty = new JButton("Add Faculty");
-        JButton removeFaculty = new JButton("Remove Selected");
-        styleBtn(addFaculty);
-        styleBtn(removeFaculty);
-        fbtnPanel.add(addFaculty);
-        fbtnPanel.add(removeFaculty);
+        JButton addFaculty = new JButton("Add Faculty"), removeFaculty = new JButton("Remove Selected");
+        styleBtn(addFaculty); styleBtn(removeFaculty);
+        fbtnPanel.add(addFaculty); fbtnPanel.add(removeFaculty);
 
         JPanel facultyBottom = new JPanel(new BorderLayout());
         facultyBottom.setOpaque(false);
         facultyBottom.add(fcontrols, BorderLayout.CENTER);
         facultyBottom.add(fbtnPanel, BorderLayout.SOUTH);
         facultyPanel.add(facultyBottom, BorderLayout.SOUTH);
-
         JScrollPane facultyWrapper = new JScrollPane(facultyPanel);
         facultyWrapper.setOpaque(false);
         facultyWrapper.getViewport().setOpaque(false);
 
-        // -----------------------------
-        // STUDENT PANEL
-        // -----------------------------
         JPanel studentPanel = new JPanel(new BorderLayout());
         studentPanel.setBackground(new Color(255, 255, 210));
         studentPanel.setBorder(BorderFactory.createTitledBorder("Students"));
-
         JList<User> studentList = new JList<>(studentListModel);
         studentList.setFont(new Font("Segoe UI", Font.PLAIN, 13));
         JScrollPane studentScroll = new JScrollPane(studentList);
@@ -124,30 +107,22 @@ public class AdminDashboard extends JFrame {
 
         JPanel sbtnPanel = new JPanel();
         sbtnPanel.setOpaque(false);
-        JButton addStudent = new JButton("Add Student");
-        JButton removeStudent = new JButton("Remove Selected");
-        styleBtn(addStudent);
-        styleBtn(removeStudent);
-        sbtnPanel.add(addStudent);
-        sbtnPanel.add(removeStudent);
+        JButton addStudent = new JButton("Add Student"), removeStudent = new JButton("Remove Selected");
+        styleBtn(addStudent); styleBtn(removeStudent);
+        sbtnPanel.add(addStudent); sbtnPanel.add(removeStudent);
 
         JPanel studentBottom = new JPanel(new BorderLayout());
         studentBottom.setOpaque(false);
         studentBottom.add(scontrols, BorderLayout.CENTER);
         studentBottom.add(sbtnPanel, BorderLayout.SOUTH);
         studentPanel.add(studentBottom, BorderLayout.SOUTH);
-
         JScrollPane studentWrapper = new JScrollPane(studentPanel);
         studentWrapper.setOpaque(false);
         studentWrapper.getViewport().setOpaque(false);
 
-        // -----------------------------
-        // SUBJECT PANEL
-        // -----------------------------
         JPanel subjPanel = new JPanel(new BorderLayout());
         subjPanel.setBackground(new Color(255, 230, 200));
         subjPanel.setBorder(BorderFactory.createTitledBorder("Subjects"));
-
         JList<Subject> subjList = new JList<>(subjectListModel);
         subjList.setFont(new Font("Segoe UI", Font.PLAIN, 13));
         subjPanel.add(new JScrollPane(subjList), BorderLayout.CENTER);
@@ -155,14 +130,10 @@ public class AdminDashboard extends JFrame {
         JPanel subControls = new JPanel();
         subControls.setOpaque(false);
         JTextField subName = new JTextField(12);
-        subControls.add(new JLabel("Subject Name:"));
-        subControls.add(subName);
-        JButton addSub = new JButton("Add Subject");
-        JButton removeSub = new JButton("Remove Selected");
-        styleBtn(addSub);
-        styleBtn(removeSub);
-        subControls.add(addSub);
-        subControls.add(removeSub);
+        subControls.add(new JLabel("Subject Name:")); subControls.add(subName);
+        JButton addSub = new JButton("Add Subject"), removeSub = new JButton("Remove Selected");
+        styleBtn(addSub); styleBtn(removeSub);
+        subControls.add(addSub); subControls.add(removeSub);
         subjPanel.add(subControls, BorderLayout.SOUTH);
 
         center.add(facultyWrapper);
@@ -170,7 +141,6 @@ public class AdminDashboard extends JFrame {
         center.add(subjPanel);
         bgPanel.add(center, BorderLayout.CENTER);
 
-        // Bottom View Attendance button
         JPanel bottom = new JPanel();
         bottom.setOpaque(false);
         JButton viewAll = new JButton("View All Student Attendance");
@@ -178,17 +148,12 @@ public class AdminDashboard extends JFrame {
         bottom.add(viewAll);
         bgPanel.add(bottom, BorderLayout.SOUTH);
 
-        // -----------------------------
-        // Actions
-        // -----------------------------
         reloadLists();
 
-        // Add Faculty
         addFaculty.addActionListener(e -> {
             String un = fuser.getText().trim(), pw = fpass.getText().trim(), nm = fname.getText().trim();
             Subject selectedSubject = (Subject) fSubject.getSelectedItem();
             if (un.isEmpty() || pw.isEmpty() || nm.isEmpty() || selectedSubject == null) return;
-
             String id = "F" + Utils.shortId();
             User newFaculty = new User(id, un, pw, nm, Role.FACULTY);
             newFaculty.assignedSubjectId = selectedSubject.id;
@@ -197,7 +162,6 @@ public class AdminDashboard extends JFrame {
             fuser.setText(""); fpass.setText(""); fname.setText("");
         });
 
-        // Remove Faculty
         removeFaculty.addActionListener(e -> {
             User sel = facultyList.getSelectedValue();
             if (sel == null || sel.username.equals("admin")) return;
@@ -208,7 +172,6 @@ public class AdminDashboard extends JFrame {
             }
         });
 
-        // Add Student
         addStudent.addActionListener(e -> {
             String un = suser.getText().trim(), pw = spass.getText().trim(), nm = sname.getText().trim();
             if (un.isEmpty() || pw.isEmpty() || nm.isEmpty()) return;
@@ -218,7 +181,6 @@ public class AdminDashboard extends JFrame {
             suser.setText(""); spass.setText(""); sname.setText("");
         });
 
-        // Remove Student
         removeStudent.addActionListener(e -> {
             User sel = studentList.getSelectedValue();
             if (sel == null || sel.username.equals("admin")) return;
@@ -229,7 +191,6 @@ public class AdminDashboard extends JFrame {
             }
         });
 
-        // Add Subject
         addSub.addActionListener(e -> {
             String snameStr = subName.getText().trim();
             if (snameStr.isEmpty()) return;
@@ -239,7 +200,6 @@ public class AdminDashboard extends JFrame {
             subName.setText("");
         });
 
-        // Remove Subject
         removeSub.addActionListener(e -> {
             Subject s = subjList.getSelectedValue();
             if (s == null) return;
@@ -250,7 +210,6 @@ public class AdminDashboard extends JFrame {
             }
         });
 
-        // View Attendance
         viewAll.addActionListener(e -> {
             StringBuilder sb = new StringBuilder();
             for (User u : DBManager.listByRole(Role.STUDENT)) {
@@ -283,7 +242,6 @@ public class AdminDashboard extends JFrame {
         studentListModel.clear();
         subjectListModel.clear();
         subjectComboBoxModel.removeAllElements();
-
         for (User u : DBManager.users.values()) {
             if (u.role == Role.FACULTY) facultyListModel.addElement(u);
             else if (u.role == Role.STUDENT) studentListModel.addElement(u);
@@ -294,3 +252,4 @@ public class AdminDashboard extends JFrame {
         }
     }
 }
+
