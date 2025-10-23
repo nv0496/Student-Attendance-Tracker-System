@@ -4,7 +4,7 @@ public class ReportUtils {
         int total=0,present=0;
         for(AttendanceRecord r: DBManager.getRecordsForStudent(studentId)){
          total++;
-         present += r.attendancePercentage / 100;  // Or accumulate percentage as needed
+         present += r.attendancePercentage / 100;  
 
         }
         if(total==0) return "No records";
