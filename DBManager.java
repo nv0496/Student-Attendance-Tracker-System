@@ -22,12 +22,11 @@ public class DBManager {
         }
     }
 
-    // ================== CONNECTION ==================
+
     public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(URL, USER, PASSWORD);
     }
 
-    // ================= USERS =================
     public static void loadUsers() {
         users.clear();
         try (Connection con = getConnection();
@@ -94,7 +93,6 @@ public class DBManager {
         }
     }
 
-    // ================= SUBJECTS =================
     public static void loadSubjects() {
         subjects.clear();
         try (Connection con = getConnection();
@@ -157,7 +155,6 @@ public class DBManager {
         return list;
     }
 
-    // ================= ATTENDANCE =================
     public static void markAttendance(String studentId, String subjectId, boolean present) {
         try (Connection con = getConnection()) {
             // Check if record exists
