@@ -1,20 +1,18 @@
 package com.attendancetracker;
 
-import java.io.Serializable; // ✅ Added import
-
-// ✅ Implement Serializable to match other models
+import java.io.Serializable; 
 public class Subject implements Serializable { 
     public String id;
     public String name;
-    public String facultyId; // Field to track who teaches the subject
+    public String facultyId; 
 
     public Subject(String id, String name) {
         this.id = id;
         this.name = name;
-        this.facultyId = null; // by default, no faculty assigned
+        this.facultyId = null; 
     }
 
-    // ✅ Overloaded constructor called by DBManager
+
     public Subject(String id, String name, String facultyId) {
         this.id = id;
         this.name = name;
@@ -29,3 +27,4 @@ public class Subject implements Serializable {
         return name;
     }
 }
+
