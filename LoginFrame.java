@@ -11,12 +11,11 @@ public class LoginFrame extends JFrame {
 
     public LoginFrame(){
         setTitle("Attendance Tracker - Login");
-        setSize(550, 480); // Slightly increased size for better padding/look
+        setSize(550, 480); 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setUndecorated(false);
-        
-        // --- 1. Load Background Image ---
+
         String imagePath = "C:/Users/ABCD/OneDrive/Desktop/app_project/com/attendancetracker/background5.jpg";
         try {
             bgImage = new ImageIcon(imagePath).getImage();
@@ -29,8 +28,7 @@ public class LoginFrame extends JFrame {
             bgImage = null;
         }
 
-        // --- 2. Custom Background Panel ---
-        JPanel bgPanel = new JPanel(new GridBagLayout()) { // Use GridBagLayout to center the form panel
+        JPanel bgPanel = new JPanel(new GridBagLayout()) { 
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
@@ -43,13 +41,12 @@ public class LoginFrame extends JFrame {
             }
         };
         setContentPane(bgPanel);
-
-        // --- 3. Central Login Card Panel ---
+--
         JPanel loginCard = new JPanel(new BorderLayout());
-        loginCard.setBackground(new Color(28, 30, 34, 230)); // Less transparent than before
+        loginCard.setBackground(new Color(28, 30, 34, 230)); 
         loginCard.setPreferredSize(new Dimension(380, 380));
         
-        // Add a subtle border/shadow effect to the card
+
         loginCard.setBorder(BorderFactory.createCompoundBorder(
             BorderFactory.createLineBorder(DarkTheme.ACCENT, 2),
             BorderFactory.createEmptyBorder(20, 20, 20, 20)
@@ -62,35 +59,33 @@ public class LoginFrame extends JFrame {
         title.setHorizontalAlignment(SwingConstants.CENTER);
         loginCard.add(title, BorderLayout.NORTH);
 
-        // Form Panel
+
         JPanel form = new JPanel(new GridBagLayout());
-        form.setOpaque(false); // Keep this transparent so loginCard background shows
+        form.setOpaque(false); 
         
         GridBagConstraints c = new GridBagConstraints();
         c.insets = new Insets(10, 10, 10, 10);
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.weightx = 1.0; // Allow components to stretch
+        c.weightx = 1.0; 
 
-        // --- Username ---
+
         c.gridx=0; c.gridy=0; c.gridwidth=2;
-        // 🔥 FIX: Added (JTextField) cast
+
         usernameField = (JTextField) createStyledTextField(false); 
         form.add(createInputPanel("Username:", usernameField), c);
 
-        // --- Password ---
         c.gridy=1;
-        // 🔥 FIX: Added (JPasswordField) cast
         passwordField = (JPasswordField) createStyledTextField(true);
         form.add(createInputPanel("Password:", passwordField), c);
 
-        // --- Role ---
+-
         c.gridy=2;
         roleBox = createStyledRoleBox();
         form.add(createInputPanel("Role:", roleBox), c);
 
         loginCard.add(form, BorderLayout.CENTER);
 
-        // --- Button Panel ---
+
         JPanel btns = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 15));
         btns.setOpaque(false);
         
@@ -106,11 +101,10 @@ public class LoginFrame extends JFrame {
         btns.add(cancel);
         loginCard.add(btns, BorderLayout.SOUTH);
 
-        // Add the central card to the center of the background panel
         bgPanel.add(loginCard); 
     }
 
-    /** Helper to wrap a label and component in a clean panel **/
+
     private JPanel createInputPanel(String labelText, JComponent component) {
         JPanel panel = new JPanel(new BorderLayout(0, 5));
         panel.setOpaque(false);
@@ -124,18 +118,18 @@ public class LoginFrame extends JFrame {
         return panel;
     }
     
-    /** Helper to create a unified look for text/password fields **/
+
     private JComponent createStyledTextField(boolean isPassword) {
         JComponent field = isPassword ? new JPasswordField() : new JTextField();
         field.setPreferredSize(new Dimension(200, 30));
-        field.setBackground(new Color(50, 50, 55)); // Darker background for input area
+        field.setBackground(new Color(50, 50, 55)); 
         field.setForeground(DarkTheme.FG);
         field.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         field.setBorder(BorderFactory.createLineBorder(new Color(60, 60, 65), 1));
         return field;
     }
 
-    /** Helper to style the JComboBox **/
+
     private JComboBox<Role> createStyledRoleBox() {
         JComboBox<Role> box = new JComboBox<>(Role.values());
         box.setPreferredSize(new Dimension(200, 30));
@@ -146,12 +140,12 @@ public class LoginFrame extends JFrame {
         return box;
     }
 
-    /** Helper to style buttons **/
+
     private void styleButton(JButton b){
         b.setFocusPainted(false);
         b.setBackground(DarkTheme.ACCENT);
         b.setForeground(Color.white);
-        b.setPreferredSize(new Dimension(140, 40)); // Slightly taller buttons
+        b.setPreferredSize(new Dimension(140, 40)); 
         b.setBorder(BorderFactory.createLineBorder(DarkTheme.ACCENT_GLOW, 2));
         b.setFont(new Font("Segoe UI", Font.BOLD, 15));
     }
